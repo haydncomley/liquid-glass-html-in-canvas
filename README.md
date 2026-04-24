@@ -2,7 +2,7 @@
 
 A playground for the experimental **HTML-in-Canvas** API, using it to render live DOM into a `<canvas>` and refract it through a shader for an Apple-style "liquid glass" effect over real page content.
 
-**[Live demo → _coming soon_](#)**
+**[Live demo](https://web-liquid-glass.vercel.app/)**
 
 ## Browser flag required
 
