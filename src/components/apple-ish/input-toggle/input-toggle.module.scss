@@ -1,0 +1,80 @@
+$elastic: cubic-bezier(0, -0.5, 0.2, 1.2);
+$elasticTime: 0.25s;
+
+.inputToggle {
+    --scale: 1, 1;
+    --offset-x: 0rem;
+    --drag-x: 0px;
+    display: flex;
+    background: var(--background-detail);
+    height: 1.7rem;
+    width: 3.65rem;
+    border-radius: 2rem;
+    transition: $elasticTime $elastic;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &.inputToggleDragging,
+    &.inputToggleAnimating {
+        --scale: 1.75, 1.8;
+
+        .inputToggleButton {
+            background: transparent;
+        }
+    }
+
+    &.inputToggleMoving {
+        // --scale: 2, 1.6;
+        --scale: 1.6, 2;
+    }
+
+    &:not(:active):not(.inputToggleDragging):not(.inputToggleAnimating) {
+        span {
+            opacity: 0;
+        }
+    }
+
+    &.inputToggleChecked {
+        background: var(--success);
+    }
+
+    &.inputToggleDragging {
+        cursor: grabbing;
+
+        .inputToggleButton {
+            transition: none;
+        }
+    }
+}
+
+.inputToggleButton {
+    width: 60%;
+    background: white;
+    border-radius: 2rem;
+    border: none;
+    margin: .15rem;
+    transition: $elasticTime $elastic;
+    transform: translateX(calc(var(--offset-x) + var(--drag-x)));
+
+    .inputToggleChecked & {
+        transform: translateX(calc(50% + .1rem + var(--offset-x) + var(--drag-x)));
+    }
+
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 1.3rem;
+        transition: $elasticTime $elastic;
+        transform: scale(var(--scale));
+    }
+}

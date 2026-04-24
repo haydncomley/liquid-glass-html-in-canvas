@@ -1,0 +1,56 @@
+.sliderContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+
+    svg {
+        color: var(--foreground-detail);
+    }
+}
+
+.flagWarning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 1.25rem;
+    color: var(--text-h);
+}
+
+.flagWarningIcon {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 0.15rem;
+}
+
+.flagWarningBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.flagWarningTitle {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-h);
+}
+
+.flagWarningText {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text);
+
+    code {
+        padding: 0.1rem 0.35rem;
+        background: var(--code-bg);
+        border-radius: 0.35rem;
+        font-family: var(--mono);
+        font-size: 0.85em;
+        user-select: all;
+    }
+}

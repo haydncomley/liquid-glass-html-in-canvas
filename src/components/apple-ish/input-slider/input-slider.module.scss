@@ -1,0 +1,96 @@
+$elastic: cubic-bezier(0, -0.5, 0.2, 1.2);
+$elasticTime: 0.25s;
+
+$thumb-width: 2rem;
+$thumb-height: 1.4rem;
+$rail-height: 0.3rem;
+$track-height: 1.6rem;
+
+.inputSlider {
+    --thumb-pct: 0;
+    --scale: 1, 1;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: $track-height;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.inputSliderDragging,
+    &:active {
+        --scale: 1.75, 1.8;
+
+        .inputSliderThumb {
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+
+    &.inputSliderMoving {
+        --scale: 1.6, 2;
+    }
+
+    &:not(:active):not(.inputSliderDragging) {
+        .inputSliderThumb span {
+            opacity: 0;
+        }
+    }
+
+    &.inputSliderDragging {
+        cursor: grabbing;
+
+        .inputSliderThumb {
+            transition: none;
+        }
+    }
+}
+
+.inputSliderRail {
+    --fill-end: calc(var(--thumb-pct) * 100%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    translate: 0 -50%;
+    height: $rail-height;
+    background: linear-gradient(
+        to right,
+        var(--info) 0,
+        var(--info) var(--fill-end),
+        var(--background-detail) var(--fill-end),
+        var(--background-detail) 100%
+    );
+    border-radius: 2rem;
+    box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+.inputSliderThumb {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--thumb-pct) * (100% - #{$thumb-width}));
+    translate: 0 -50%;
+    width: $thumb-width;
+    height: $thumb-height;
+    background: white;
+    border-radius: 2rem;
+    transition: $elasticTime $elastic;
+    pointer-events: none;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
+
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 1.3rem;
+        transition: $elasticTime $elastic;
+        transform: scale(var(--scale));
+    }
+}

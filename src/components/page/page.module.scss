@@ -1,0 +1,66 @@
+:global(:root) {
+    --foreground: #000000;
+    --foreground-alt: #353535;
+    --foreground-detail: #919191;
+    --background: #f0f3f6;
+    --background-alt: #ffffff;
+    --background-detail: #ddd8d8;
+    --success: #58df5d;
+    --info: #0e7af4;
+
+    @media (prefers-color-scheme: dark) {
+        --foreground: #ffffff;
+        --foreground-alt: #ffffff;
+        --foreground-detail: #cacaca;
+        --background: #000000;
+        --background-alt: #2f2f2f;
+        --background-detail: #595858;
+        --success: #58df5d;
+        --info: #0ea3f4;
+    }
+}
+
+.page {
+    position: relative;
+    flex: 1;
+    background-color: var(--background);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &:has(nav) {
+        padding-bottom: 5.5rem;
+    }
+
+    .pageContent {
+        padding: 1rem;
+        max-width: 30rem;
+        margin: 0 auto;
+    }
+
+    &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        height: 10%;
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(to bottom, var(--background), transparent);
+        mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    &::after {
+        content: "";
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        height: 15%;
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(to top, var(--background), transparent);
+    }
+}

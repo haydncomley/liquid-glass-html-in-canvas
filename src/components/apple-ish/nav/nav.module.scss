@@ -1,0 +1,268 @@
+.topNav {
+    position: fixed;
+    top: 1rem;
+    padding: 1rem;
+    width: calc(min(calc(100% - 4rem), calc(30rem - 2rem)));
+    z-index: 2;
+    view-transition-name: top-nav;
+}
+
+.bottomNav {
+    position: fixed;
+    bottom: 1rem;
+    padding: 1rem;
+    width: calc(min(calc(100% - 4rem), calc(30rem - 2rem)));
+    z-index: 2;
+    view-transition-name: bottom-nav;
+}
+
+.bottomNavSearch {
+    display: flex;
+    gap: 1rem;
+}
+
+.bottomNavSearchField {
+    flex: 1;
+    border-radius: 1.5rem;
+
+    .bottomNavSearchFieldContent {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding: 0.5rem 1rem;
+        height: 2rem;
+        gap: 0.75rem;
+        color: var(--foreground);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(.1rem);
+
+        svg {
+            stroke: var(--foreground-alt);
+            height: 1.2rem;
+            width: 1.2rem;
+        }
+
+        .bottomNavSearchFieldInput {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            height: 1rem;
+            margin: 0;
+            padding: 0;
+            outline: none;
+
+            &::placeholder {
+                color: var(--foreground-detail);
+            }
+        }
+    }
+}
+
+.navFab {
+    display: inline-flex;
+    margin-left: -1rem;
+    margin-top: -1rem;
+}
+
+.navFabButton {
+    height: 3rem;
+    width: 3rem;
+    border: none;
+    border-radius: 1.5rem;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s cubic-bezier(0, -0.5, 0.2, 1.2);
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+    }
+
+    @media (pointer: fine) {
+        &:hover {
+            transform: scale(1.2);
+            border-radius: 1.75rem;
+        }
+
+        &:active {
+            transform: scale(1);
+            border-radius: 1.5rem;
+        }
+    }
+
+    @media (pointer: coarse) {
+        &:active {
+            transform: scale(1.2);
+            border-radius: 1.75rem;
+        }
+    }
+}
+
+.navFabButtonContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        height: 2rem;
+        width: 2rem;
+        padding: 0.5rem;
+        stroke: var(--foreground-alt);
+    }
+}
+
+$nav-bar-item-width: 5.5rem;
+$nav-bar-height: 3.5rem;
+$nav-bar-padding: 0.2rem;
+$nav-bar-radius: 1.75rem;
+$nav-bar-indicator-radius: 2rem;
+$elastic: cubic-bezier(0, -0.5, 0.2, 1.2);
+$elasticTime: 0.3s;
+
+.navBar {
+    position: relative;
+    display: inline-flex;
+    margin-left: -1rem;
+}
+
+// LiquidGlass anchor/portal wrapper — needs display: block so the span (anchor)
+// lays out as a box and the portal sizes to match.
+.navBarPill {
+    display: block;
+    border-radius: $nav-bar-radius;
+    pointer-events: none;
+}
+
+.navBarContent {
+    position: relative;
+    display: flex;
+    padding: $nav-bar-padding;
+    border-radius: $nav-bar-radius;
+    height: $nav-bar-height;
+    box-sizing: border-box;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    // Re-enable pointer events on the track: LiquidGlass marks its anchor/portal
+    // as pointer-events: none; we need the track (and its buttons) to receive
+    // pointer events.
+    pointer-events: auto;
+}
+
+.navBarIndicator {
+    --scale: 1, 1;
+    --indicator-x: 0px;
+    --indicator-w: #{$nav-bar-item-width};
+    position: absolute;
+    top: $nav-bar-padding;
+    left: 0;
+    width: var(--indicator-w);
+    height: calc(#{$nav-bar-height} - #{2 * $nav-bar-padding});
+    translate: var(--indicator-x) 0;
+    // background: rgb(140 145 147 / 20%);
+    backdrop-filter: blur(0.2rem);
+    border-radius: $nav-bar-indicator-radius;
+    transition: translate $elasticTime $elastic,
+        background $elasticTime $elastic,
+        backdrop-filter $elasticTime $elastic;
+    pointer-events: none;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: $nav-bar-indicator-radius;
+        transform: scale(var(--scale));
+        transition: transform $elasticTime $elastic,
+            opacity $elasticTime $elastic;
+        opacity: 0;
+    }
+
+    &.navBarIndicatorDragging,
+    &.navBarIndicatorAnimating {
+        --scale: 1.3, 1.4;
+        background: transparent;
+        backdrop-filter: none;
+        
+        span {
+            opacity: 1;
+            border-radius: 2.25rem;
+        }
+    }
+
+    // While the pointer is actively dragging (moving within the last 50ms),
+    // skip the translate transition so the indicator tracks the pointer 1:1.
+    // A pure press (no movement) keeps the default transition so the slide
+    // to the pressed item still animates elastically.
+    &.navBarIndicatorMoving {
+        --scale: 1.1, 1.6;
+        transition: background $elasticTime $elastic,
+            backdrop-filter $elasticTime $elastic;
+    }
+
+    &.navBarIndicatorHidden {
+        opacity: 0;
+        visibility: hidden;
+
+        span {
+            opacity: 0;
+        }
+    }
+}
+
+.navBarItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(#{$nav-bar-height} - #{2 * $nav-bar-padding});
+    width: $nav-bar-item-width;
+    border: none;
+    background-color: transparent;
+    gap: 0.15rem;
+    margin: 0;
+    padding: 0;
+    border-radius: $nav-bar-indicator-radius;
+    cursor: pointer;
+    pointer-events: auto;
+    background: transparent;
+    transition: background $elasticTime $elastic;
+
+    span {
+        font-size: 0.75rem;
+        color: var(--foreground-alt);
+        transition: color $elasticTime $elastic;
+    }
+
+    svg {
+        stroke: var(--foreground-alt);
+        transition: stroke $elasticTime $elastic;
+    }
+
+    &.navBarItemSelected {
+        background: rgba(186, 190, 192, 0.2);
+
+        @media (prefers-color-scheme: dark) {
+            background: rgb(109 111 112 / 20%);
+        }
+    }
+
+    &.navBarItemActive {
+        span {
+            color: var(--info);
+        }
+
+        svg {
+            stroke: var(--info);
+        }
+    }
+}

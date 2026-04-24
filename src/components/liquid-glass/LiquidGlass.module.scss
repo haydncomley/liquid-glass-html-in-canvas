@@ -1,0 +1,19 @@
+// Marker classes — kept global on purpose. `LiquidGlassProvider` enumerates
+// lenses via `querySelectorAll(".liquid-glass, .liquid-glass-clear")`, and
+// consumers also apply these directly to standalone lens placeholders.
+:global(.liquid-glass),
+:global(.liquid-glass-clear) {
+  pointer-events: none;
+}
+
+.anchor {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}

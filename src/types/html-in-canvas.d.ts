@@ -20,4 +20,25 @@ declare global {
       dh: number,
     ): DOMMatrix;
   }
+
+  interface WebGL2RenderingContext {
+    texElementImage2D?(
+      target: GLenum,
+      level: GLint,
+      internalformat: GLint,
+      format: GLenum,
+      type: GLenum,
+      element: Element,
+    ): void;
+    texElementImage2D?(
+      target: GLenum,
+      level: GLint,
+      internalformat: GLint,
+      width: GLsizei,
+      height: GLsizei,
+      format: GLenum,
+      type: GLenum,
+      element: Element,
+    ): void;
+  }
 }

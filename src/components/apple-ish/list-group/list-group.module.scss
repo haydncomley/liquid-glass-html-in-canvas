@@ -1,0 +1,81 @@
+.listGroup {
+    position: relative;
+    padding: 0.75rem 1rem;
+    background: var(--background-alt);
+    border-radius: 1.75rem;
+    margin: 0;
+
+    &:has(.listGroupLabel) {
+        margin-top: 3rem;
+    }
+
+    &~ .listGroup {
+        margin-top: 1.5rem;
+
+        &:has(.listGroupLabel) {
+            margin-top: 3rem;
+        }
+    }
+
+    .listGroupLabel {
+        position: absolute;
+        bottom: calc(100% + 0.25rem);
+        font-weight: 600;
+        color: var(--foreground-detail);
+        margin: 0;
+    }
+}
+
+.listGroupItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    --left: 0rem;
+
+    &.listGroupItemClickable {
+        cursor: pointer;
+    }
+
+    &.listGroupItemIcon {
+        --left: 2.75rem;
+    }
+
+    .listGroupItemIcon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: .5rem;
+        background: var(--background-detail);
+    }
+
+    .listGroupItemLabel {
+        margin: 0;
+        color: var(--foreground);
+    }
+
+    .listGroupItemDetail {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        color: var(--foreground-detail);
+
+        .listGroupItemDetailChevron {
+            display: flex;
+            margin-left: 0.25rem;
+        }
+    }
+
+
+    &:not(:last-child) {
+        margin-bottom: 1.5rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: var(--left);
+            right: 0;
+            bottom: -0.75rem;
+            border-top: 1px solid var(--background-detail);
+        }
+    }
+}

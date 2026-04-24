@@ -1,0 +1,36 @@
+:global(html) {
+  height: 100dvh;
+}
+
+.liquidGlassProvider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// Base source canvas — holds the React tree and sizes the stack.
+.liquidGlassBase {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// Shared absolute-overlay for GL + overlay source canvases.
+.liquidGlassLayer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.liquidGlassEffects {
+  pointer-events: none;
+}
+
+// Level-1 overlay source canvas. Pointer-events: none so non-child clicks
+// fall through to the source base beneath; portaled interactive children
+// still work via their own `pointer-events: auto`.
+.liquidGlassOverlay {
+  pointer-events: none;
+}

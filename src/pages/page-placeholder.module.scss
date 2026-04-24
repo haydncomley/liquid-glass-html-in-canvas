@@ -1,0 +1,42 @@
+.placeholder {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 28px 200px;
+  color: var(--text-h);
+  font-family: var(--sans);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &__kicker {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+
+  &__title {
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -1.4px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: var(--text-h);
+
+    @media (max-width: 720px) {
+      font-size: 36px;
+      letter-spacing: -0.8px;
+    }
+  }
+
+  &__dek {
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--text);
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+  }
+}
