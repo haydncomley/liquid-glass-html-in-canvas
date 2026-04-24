@@ -3,14 +3,7 @@ import { InputToggle } from "../../components/apple-ish/input-toggle";
 import { ListGroup } from "../../components/apple-ish/list-group";
 import { Title } from "../../components/apple-ish/title";
 import { Page } from "../../components/page";
-import {
-  ChevronLeft,
-  Home,
-  MessageSquare,
-  Music,
-  Podcast,
-  Settings,
-} from "lucide-react";
+import { ChevronLeft, Music, Podcast } from "lucide-react";
 import { useViewTransitionNavigate } from "../../hooks/useViewTransitionNavigate";
 
 export function SettingsPage() {
