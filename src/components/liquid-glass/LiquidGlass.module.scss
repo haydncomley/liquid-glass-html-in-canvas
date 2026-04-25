@@ -17,3 +17,39 @@
   left: 0;
   pointer-events: none;
 }
+
+// CSS-only fallback used when `drawElementImage` is unavailable. The lens
+// renders in normal layout flow as a real DOM element so children stay
+// interactive; the glass look comes from `backdrop-filter` rather than a shader.
+.fallback {
+  position: relative;
+  isolation: isolate;
+}
+
+.fallbackRegular {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(40, 40, 40, 0.8);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+.fallbackClear {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: saturate(200%);
+  box-shadow: 0 .1rem .5rem rgb(25 25 25 / 25%);
+  outline: 1px solid #ebebeb;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(40, 40, 40, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+}

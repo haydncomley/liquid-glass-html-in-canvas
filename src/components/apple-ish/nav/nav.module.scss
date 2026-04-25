@@ -167,8 +167,6 @@ $elasticTime: 0.3s;
     width: var(--indicator-w);
     height: calc(#{$nav-bar-height} - #{2 * $nav-bar-padding});
     translate: var(--indicator-x) 0;
-    // background: rgb(140 145 147 / 20%);
-    backdrop-filter: blur(0.2rem);
     border-radius: $nav-bar-indicator-radius;
     transition: translate $elasticTime $elastic,
         background $elasticTime $elastic,

@@ -31,9 +31,11 @@ export function LiquidGlass({
 }: LiquidGlassProps) {
   const anchorRef = useRef<HTMLSpanElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
-  const { overlay } = useContext(LiquidGlassContext);
+  const { overlay, supported } = useContext(LiquidGlassContext);
+  const isFallback = supported === false;
 
   useLayoutEffect(() => {
+    if (isFallback) return;
     const anchor = anchorRef.current;
     const portal = portalRef.current;
     if (!anchor || !portal) return;
@@ -64,6 +66,33 @@ export function LiquidGlass({
   });
 
   const marker = glass === "clear" ? "liquid-glass-clear" : "liquid-glass";
+
+  if (isFallback) {
+    // No source canvas exists, so there's nothing to portal into and nothing to
+    // sync against. Render the lens in normal layout flow with a CSS-only glass
+    // surface — children stay interactive and the consumer's className governs
+    // sizing/border-radius exactly as in the shader path.
+    const fallbackClass = [
+      marker,
+      styles.fallback,
+      glass === "clear" ? styles.fallbackClear : styles.fallbackRegular,
+      className,
+    ]
+      .filter(Boolean)
+      .join(" ");
+    return (
+      <span
+        {...rest}
+        className={fallbackClass}
+        data-glass
+        data-liquid-level={level}
+        style={style}
+      >
+        {children}
+      </span>
+    );
+  }
+
   const anchorClass = [marker, styles.anchor, className]
     .filter(Boolean)
     .join(" ");

@@ -335,14 +335,14 @@ export function LiquidGlassProvider({ children }: Props) {
 
   if (supported === false) {
     return (
-      <LiquidGlassContext.Provider value={{ overlay: null }}>
+      <LiquidGlassContext.Provider value={{ overlay: null, supported: false }}>
         {children}
       </LiquidGlassContext.Provider>
     );
   }
 
   return (
-    <LiquidGlassContext.Provider value={{ overlay: overlayEl }}>
+    <LiquidGlassContext.Provider value={{ overlay: overlayEl, supported }}>
       <div ref={wrapRef} className={styles.liquidGlassProvider}>
         <canvas ref={sourceRef} className={styles.liquidGlassBase}>
           {children}

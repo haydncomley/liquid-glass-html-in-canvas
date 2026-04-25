@@ -92,7 +92,7 @@ export function DashboardPage() {
         />
       </Nav>
 
-      <MadeByMe className="fixed max-md:bottom-1/4 max-md:left-1/2 max-md:-translate-x-1/2 md:top-1 md:right-3 z-100 max-md:grayscale max-md:contrast-75 max-md:opacity-50! max-md:hover:opacity-100!" />
+      <MadeByMe className="fixed max-md:bottom-26 max-md:left-1/2 max-md:-translate-x-1/2 md:top-1 md:right-3 z-100 max-md:grayscale max-md:contrast-75 max-md:opacity-50! max-md:hover:opacity-100!" />
     </Page>
   );
 }
