@@ -1,5 +1,7 @@
 # Liquid Glass — HTML-in-Canvas Demo
 
+<video src="https://web-liquid-glass.vercel.app/cover.webm" autoplay loop muted playsinline></video>
+
 A playground for the experimental **HTML-in-Canvas** API, using it to render live DOM into a `<canvas>` and refract it through a shader for an Apple-style "liquid glass" effect over real page content.
 
 **[Live demo](https://web-liquid-glass.vercel.app/)**
@@ -25,3 +27,13 @@ pnpm dev
 
 - Website — [haydns.website](https://haydns.website)
 - YouTube — [@haydncomley](https://youtube.com/@haydncomley)
+
+## Demos
+
+### Desktop
+
+<video src="https://web-liquid-glass.vercel.app/desktop.webm" autoplay loop muted playsinline></video>
+
+### Android
+
+<video src="https://web-liquid-glass.vercel.app/android.webm" autoplay loop muted playsinline></video>
